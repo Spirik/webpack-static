@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru">
+<% var data = {
+  title: "Home Page",
+  credits: (new Date()).getFullYear()
+}; %>
+<%= _.template(require('./common/_head.html'))(data) %>
+<body>
+<%= _.template(require('./common/_header.html'))(data) %>
+
+<div class="content">
+  <div class="container">
+    Home Page. Go to <a href="second.html">second</a>.
+  </div>
+</div>
+
+<%= _.template(require('./common/_footer.html'))(data) %>
+</body>
+</html>

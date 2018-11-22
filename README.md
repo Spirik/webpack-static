@@ -1,29 +1,40 @@
-# static-site-webpack-habr
+Webpack-based static site
+=========================
 
-![Webpack](https://raw.githubusercontent.com/Harrix/static-site-webpack-habr/master/docs/img/thumbnail.png)
+Template for creation of static multi-page HTML site using Webpack.
 
-Демонстрация сборки статического сайта с помощью `Webpack`.
+Why would you want to use it? It depends. In majority of cases, chances are you shouldn't. In other possible scenario - it may help you to jump-start development of initial static markup for a site that will most-likely use this stack later on and do some quick prototyping.
 
-Для статьи [https://habr.com/post/350886/](https://habr.com/post/350886/).
+This is a fork of [Harris](https://github.com/Harrix) / [static-site-webpack-habr](https://github.com/Harrix/static-site-webpack-habr), tweaked and tuned a little for my liking.
 
-Дублирование статьи [article.md](https://github.com/Harrix/static-site-webpack-habr/blob/master/docs/article.md).
+Installation
+------------
 
-Лицензия: [MIT](https://github.com/Harrix/static-site-webpack-habr/blob/master/LICENSE.md).
+To install & build run:
+* `npm install` (to install packages)
+* `npm run dev` (to build sources into `dist` directory in development mode, w/o minification)
+* `npm run build` (to build sources into `dist` directory in production mode, with minification)
+* `npm run watch` (to dynamically rebuild site in development mode each time files are changed)
+* `npm run start` (to launch Webpack Dev Server on port 8080 with hot-reload)
 
-## Использование
+Notes on implementation
+-----------------------
 
-1. Установите `Node.js`.
+* HTML partials support lodash/underscore templates; it is possible to pass variables to partial;
+* `fonts` and `img` directories are copied directly into `dist` directory using `copy-webpack-plugin`;
+* Currently `url` option of `css-loader` is set to `false`. This prohibits url found in CSS to be resolved automatically. This is done to mitigate a possible issue with assets of 3-rd party libraries installed as a node modules and included in SASS/SCSS manifest with `@import` statement. Possible solution is to use [`resolve-url-loader`](https://github.com/bholloway/resolve-url-loader) and `file-loader`.
 
-2. Создайте папку, в которой будете создавать своей проект.
+Differences
+-----------
 
-3. В командной строке перейдите в эту папку.
+Main differences from the [original](https://github.com/Harrix/static-site-webpack-habr) version:
 
-4. Скопируйте в папку файлы из данного проекта.
-
-## Контакты
-
-Автор: Сергиенко Антон Борисович.
-
-С автором можно связаться по адресу [sergienkoanton@mail.ru](mailto:sergienkoanton@mail.ru) или  [http://vk.com/harrix](http://vk.com/harrix).
-
-Сайт автора, где публикуются последние новости: [http://blog.harrix.org](http://blog.harrix.org), а проекты располагаются по адресу: [http://harrix.org](http://harrix.org).
+* `autoprefixer` added;
+* `browserslist` config for `babel` and `autoprefixer` specified in `package.json`;
+* `dist` directory added to `.gitignore`;
+* `del-cli` replaced with `clean-webpack-plugin` for `dist` cleaning;
+* `inject` set to `true` for `HtmlWebpackPlugin`;
+* SASS syntax used instead of SCSS;
+* `html/views` directory removed (html views now reside in `html` directory directly), `includes` folder renamed to `common`;
+* `ProvidePlugin` used to load jQuery;
+* `svg-sprite-loader` and `svgo-loader` added to generate SVG sprites.
