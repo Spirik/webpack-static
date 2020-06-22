@@ -11,30 +11,31 @@ Installation
 ------------
 
 To install & build run:
-* `npm install` (to install packages)
-* `npm run dev` (to build sources into `dist` directory in development mode, w/o minification)
-* `npm run build` (to build sources into `dist` directory in production mode, with minification)
-* `npm run watch` (to dynamically rebuild site in development mode each time files are changed)
-* `npm run start` (to launch Webpack Dev Server on port 8080 with hot-reload)
+* `yarn install` (to install packages)
+* `yarn dev` (to build sources into `dist` directory in development mode, w/o minification)
+* `yarn build` (to build sources into `dist` directory in production mode, with minification)
+* `yarn watch` (to dynamically rebuild site in development mode each time files are changed)
+* `yarn start` (to launch Webpack Dev Server on port 8080 with hot-reload)
 
 Notes on implementation
 -----------------------
 
 * HTML partials support lodash/underscore templates; it is possible to pass variables to partial;
 * `fonts` and `img` directories are copied directly into `dist` directory using `copy-webpack-plugin`;
-* Currently `url` option of `css-loader` is set to `false`. This prohibits url found in CSS to be resolved automatically. This is done to mitigate a possible issue with assets of 3-rd party libraries installed as a node modules and included in SASS/SCSS manifest with `@import` statement. Possible solution is to use [`resolve-url-loader`](https://github.com/bholloway/resolve-url-loader) and `file-loader`.
+* Currently `url` option of `css-loader` is set to `false`. This prohibits url found in CSS to be resolved automatically. This is done to mitigate a possible issue with assets of 3-rd party libraries installed as a node modules and included in CSS manifest with `@import` statement. Possible solution is to use [`resolve-url-loader`](https://github.com/bholloway/resolve-url-loader) and `file-loader`.
 
 Differences
 -----------
 
 Main differences from the [original](https://github.com/Harrix/static-site-webpack-habr) version:
 
+* `.nvmrc` file for node version selection via NVM added;
 * `autoprefixer` added;
 * `browserslist` config for `babel` and `autoprefixer` specified in `package.json`;
 * `dist` directory added to `.gitignore`;
 * `del-cli` replaced with `clean-webpack-plugin` for `dist` cleaning;
 * `inject` set to `true` for `HtmlWebpackPlugin`;
-* SASS syntax used instead of SCSS;
+* PostCSS used instead of SCSS (`postcss.config.js` added);
 * `html/views` directory removed (html views now reside in `html` directory directly), `includes` folder renamed to `common`;
 * `ProvidePlugin` used to load jQuery;
 * `svg-sprite-loader` and `svgo-loader` added to generate SVG sprites.

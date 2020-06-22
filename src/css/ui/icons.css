@@ -1,0 +1,15 @@
+/*
+//-----------------------------------------
+// Icons
+//-----------------------------------------
+*/
+
+.icon {
+  display: inline-block;
+  fill: currentColor;
+
+  &_crazy {
+    width: 221px;
+    height: 73px;
+  }
+}

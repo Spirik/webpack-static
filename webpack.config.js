@@ -29,7 +29,7 @@ module.exports = (env, options) => {
   const prodMode = options.mode === 'production';
   return {
     entry: {
-      app: ['./src/js/app.js', './src/css/app.sass'],
+      app: ['./src/js/app.js', './src/css/app.css'],
       svg: './src/js/svg.js'
     },
     output: {
@@ -68,23 +68,7 @@ module.exports = (env, options) => {
                 url: false
               }
             },
-            {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                sourceMap: true,
-                plugins: [
-                  require('autoprefixer'),
-                  require('cssnano')({
-                    preset: ['default', {
-                      discardComments: {
-                        removeAll: true,
-                      },
-                    }]
-                  })
-                ]
-              }
-            },
+            'postcss-loader',
             {
               loader: "sass-loader",
               options: {

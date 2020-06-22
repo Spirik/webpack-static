@@ -1,5 +1,9 @@
+/*
 //-----------------------------------------
 // Variables
 //-----------------------------------------
+*/
 
-$font-family: rubik, 'Open Sans', 'Helvetica Neue', Arial, sans-serif
+:root {
+  --font-family: rubik, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
