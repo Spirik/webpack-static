@@ -54,7 +54,7 @@ module.exports = (env, options) => {
           }
         },
         {
-          test: /\.(css|sass|scss)$/,
+          test: /\.(css)$/,
           include: path.resolve(__dirname, 'src/css'),
           use: [
             {
@@ -68,13 +68,7 @@ module.exports = (env, options) => {
                 url: false
               }
             },
-            'postcss-loader',
-            {
-              loader: "sass-loader",
-              options: {
-                sourceMap: true
-              }
-            }
+            'postcss-loader'
           ]
         },
         {
